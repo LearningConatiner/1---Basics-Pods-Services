@@ -57,11 +57,6 @@
 		 kubectl get pods
 		 kubectl describe pods <pod name>
 		 kubectl logs <podname> 
-	
-##### Containers:
-	imagePullPolicy: IfNotPresent
-
--> Pulls image only if not present/already pulled
 
 #### Namespace:
 
@@ -83,7 +78,14 @@
 		
 		kubectl create -f <yaml file name> --namespace <name of namespace>
 		
-#### Container Logs
+#### Container 
+
+##### Spec details
+
+	imagePullPolicy: IfNotPresent
+
+-> Pulls image only if not present/already pulled
+##### Logs
 
 		kubectl logs <pod name> -c < container name> --namespace <namespace name>
 		
