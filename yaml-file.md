@@ -39,10 +39,10 @@
 	    - port: 80
 	      protocol: TCP
 	      
-	  # Optional: 
+	  # Optional: Type defaults to cluster IP. 
 	  # values: NodePort - Internal Load Balancer to expose to public via nodeip:nodeport, 
 	  # LoadBalancer: External Load Balancer to expose to public via external public ip, 
-	  # ClusterIP: does not expose to public
+	  # ClusterIP: Cluster IP creates a virtual IP inside the cluster for internal access only. Does not expose to public.
 	  
 	  type: NodePort
 
@@ -58,6 +58,43 @@
 		 kubectl describe pods <pod name>
 		 kubectl logs <podname> 
 	
-5. To debug containers in a pod ->
+##### Containers:
+	imagePullPolicy: IfNotPresent
 
-		 kubectl logs <podname> <container name>
+-> Pulls image only if not present/already pulled
+
+#### Namespace:
+
+1. Resource isolation (at application and at environment level)
+2. Security (RBAC)
+
+		apiVersion: v1
+		kind: Namespace
+		metadata:
+		  name: namespace1
+		  labels:
+		    name: namespace1
+
+3. Create Namespace
+		
+		kubectl create -f <namespace yaml file name>
+
+4. While creating/accessing any other k8s resources, always use namespace in the creation command.
+		
+		kubectl create -f <yaml file name> --namespace <name of namespace>
+		
+#### Container Logs
+
+		kubectl logs <pod name> -c < container name> --namespace <namespace name>
+		
+		# To stream logs use -f option 
+		
+		kubectl logs <pod name> -c < container name> -f --namespace <namespace name>						 
+
+#### Scaling
+
+1. Always scaled at pod level and not at container level. So, create multiple pods with containers based on how you want to define scaling
+
+	 
+       
+        
