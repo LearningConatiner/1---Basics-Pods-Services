@@ -19,9 +19,14 @@
 		example-app-tier       1/1       Running   0          5m
 		example-data-tier      1/1       Running   0          5m
 		example-support-tier   2/2       Running   2          5s
+		$ kubectl logs example-support-tier -c poller --namespace ns1
+		Current counter: 9
+		Current counter: 21
+		Current counter: 27
 		$ kubectl logs example-support-tier -c counter --namespace ns1
-
-
+		Incrementing counter by 9 ...
+		Incrementing counter by 8 ...
+		Incrementing counter by 4 ...
 
 
 
